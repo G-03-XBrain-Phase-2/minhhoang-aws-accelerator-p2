@@ -9,9 +9,9 @@
 crash.log
 crash.*.log
 
-# Terraform variable files can contain secrets
-*.tfvars
-*.tfvars.json
+# Terraform variable files can contain secrets; commit only safe lab examples.
+# *.tfvars
+# *.tfvars.json
 
 # Terraform local override files
 override.tf

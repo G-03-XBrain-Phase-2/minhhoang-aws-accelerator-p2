@@ -7,6 +7,14 @@ terraform {
       version = "~> 6.0"
     }
   }
+
+  backend "s3" {
+    bucket       = "s3-backend-20260602034907737900000001"
+    key          = "./terraform.tfstate"
+    region       = "ap-southeast-1"
+    encrypt      = true
+    use_lockfile = true
+  }
 }
 
 provider "aws" {
@@ -15,19 +23,11 @@ provider "aws" {
 }
 
 resource "aws_s3_bucket" "local" {
-  bucket_prefix = "local-bucket-"
+  bucket_prefix = "s3-backend-"
   force_destroy = true
 
   tags = {
     Environment = "Dev"
     Owner       = "Minh Hoang"
   }
-}
-
-output "bucket_name" {
-  value = aws_s3_bucket.local.bucket
-}
-
-output "bucket_arn" {
-  value = aws_s3_bucket.local.arn
 }

@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: web
+  labels:
+    app: web
+spec:
+  replicas: 3
+  selector:
+    matchLabels: # selector dùng để xác định các pod nào sẽ được quản lý bởi deployment này, nó sẽ tìm kiếm các pod có nhãn (label) phù hợp với nhãn được chỉ định trong matchLabels.
+      app: web
+  template: # nơi cấu hình pod, y chang cấu hinh pod bình thường, nhưng nó sẽ được nhân bản theo số lượng replicas đã chỉ định ở trên.
+    metadata:
+      labels: # phải khớp với matchLabels ở trên, để deployment có thể quản lý các pod này.
+        app: web
+    spec:
+      containers:
+        - name: hoangcute
+          image: nginx:latest
+          ports:
+            - containerPort: 80

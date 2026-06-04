@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hello-nginx
+  labels:
+    app: web
+spec:
+  containers:
+    - name: hoangcute
+      image: nginx:latest
+      ports:
+        - containerPort: 80
